@@ -297,6 +297,11 @@ footer.api-link a:hover {
   color: #1a4a78;
 }
 
+.api-link-sep {
+  margin: 0 10px;
+  color: #ccc;
+}
+
 /* ── Field validation ── */
 .field-invalid { border-color: #c0392b !important; }
 
