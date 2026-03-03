@@ -1,0 +1,104 @@
+[
+  {
+    "model": "empreendimentos.empreendimento",
+    "pk": 1,
+    "fields": {
+      "nome": "Teste 1",
+      "nome_empreendedor": "Teste 1",
+      "municipio": "Florianópolis",
+      "segmento": "tecnologia",
+      "email": "teste1@teste.com",
+      "telefone": "(48) 99999-0001",
+      "status": "ativo",
+      "descricao": "",
+      "data_fundacao": null,
+      "created_at": "2024-01-10T10:00:00Z",
+      "updated_at": "2024-01-10T10:00:00Z"
+    }
+  },
+  {
+    "model": "empreendimentos.empreendimento",
+    "pk": 2,
+    "fields": {
+      "nome": "Teste 2",
+      "nome_empreendedor": "Teste 2",
+      "municipio": "Joinville",
+      "segmento": "comercio",
+      "email": "teste2@teste.com",
+      "telefone": "(47) 99999-0002",
+      "status": "ativo",
+      "descricao": "",
+      "data_fundacao": null,
+      "created_at": "2024-01-11T09:30:00Z",
+      "updated_at": "2024-01-11T09:30:00Z"
+    }
+  },
+  {
+    "model": "empreendimentos.empreendimento",
+    "pk": 3,
+    "fields": {
+      "nome": "Teste 3",
+      "nome_empreendedor": "Teste 3",
+      "municipio": "Blumenau",
+      "segmento": "industria",
+      "email": "teste3@teste.com",
+      "telefone": "(47) 99999-0003",
+      "status": "ativo",
+      "descricao": "",
+      "data_fundacao": null,
+      "created_at": "2024-01-12T14:00:00Z",
+      "updated_at": "2024-01-12T14:00:00Z"
+    }
+  },
+  {
+    "model": "empreendimentos.empreendimento",
+    "pk": 4,
+    "fields": {
+      "nome": "Teste 4",
+      "nome_empreendedor": "Teste 4",
+      "municipio": "Chapecó",
+      "segmento": "agronegocio",
+      "email": "teste4@teste.com",
+      "telefone": "(49) 99999-0004",
+      "status": "ativo",
+      "descricao": "",
+      "data_fundacao": null,
+      "created_at": "2024-01-13T08:00:00Z",
+      "updated_at": "2024-01-13T08:00:00Z"
+    }
+  },
+  {
+    "model": "empreendimentos.empreendimento",
+    "pk": 5,
+    "fields": {
+      "nome": "Teste 5",
+      "nome_empreendedor": "Teste 5",
+      "municipio": "Itajaí",
+      "segmento": "servicos",
+      "email": "teste5@teste.com",
+      "telefone": "(47) 99999-0005",
+      "status": "ativo",
+      "descricao": "",
+      "data_fundacao": null,
+      "created_at": "2024-01-14T11:00:00Z",
+      "updated_at": "2024-01-14T11:00:00Z"
+    }
+  },
+  {
+    "model": "empreendimentos.empreendimento",
+    "pk": 6,
+    "fields": {
+      "nome": "Teste 6",
+      "nome_empreendedor": "Teste 6",
+      "municipio": "Criciúma",
+      "segmento": "tecnologia",
+      "email": "teste6@teste.com",
+      "telefone": "(48) 99999-0006",
+      "status": "inativo",
+      "descricao": "",
+      "data_fundacao": null,
+      "created_at": "2024-01-15T16:00:00Z",
+      "updated_at": "2024-01-15T16:00:00Z"
+    }
+  }
+]

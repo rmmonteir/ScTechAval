@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empreendimentos SCTec</title>
+  <link rel="stylesheet" href="{% static 'empreendimentos/style.css' %}">
+</head>
+<body>
+
+<header>
+  <h1>Empreendimentos SCT - Projeto SCtec</h1>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Buscar por nome, município...">
+    <select id="filter-segmento">
+      <option value="">Todos os segmentos</option>
+      <option value="tecnologia">Tecnologia</option>
+      <option value="comercio">Comércio</option>
+      <option value="industria">Indústria</option>
+      <option value="servicos">Serviços</option>
+      <option value="agronegocio">Agronegócio</option>
+    </select>
+    <select id="filter-status">
+      <option value="">Todos os status</option>
+      <option value="ativo">Ativo</option>
+      <option value="inativo">Inativo</option>
+    </select>
+  </div>
+
+  <div class="table-actions">
+    <button class="btn btn-primary" id="btn-novo">+ Novo</button>
+  </div>
+
+  <div class="table-wrap">
+    <p id="loading" class="loading">Carregando...</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Empreendedor</th>
+          <th>Município</th>
+          <th>Segmento</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p id="empty" class="empty" hidden>Nenhum empreendimento encontrado.</p>
+  </div>
+
+  <div class="pagination">
+    <button class="btn btn-secondary" id="btn-prev" disabled>← Anterior</button>
+    <span id="page-info"></span>
+    <button class="btn btn-secondary" id="btn-next" disabled>Próximo →</button>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <h2 id="modal-title">Novo empreendimento</h2>
+      <button class="modal-close" id="btn-cancelar" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+          <div class="field">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome" required maxlength="200">
+          </div>
+          <div class="field">
+            <label for="nome_empreendedor">Empreendedor *</label>
+            <input type="text" id="nome_empreendedor" name="nome_empreendedor" required maxlength="200">
+          </div>
+          <div class="field">
+            <label for="municipio">Município *</label>
+            <input type="text" id="municipio" name="municipio" required maxlength="100"
+                   list="municipios-list" autocomplete="off">
+            <datalist id="municipios-list"></datalist>
+          </div>
+          <div class="field">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required maxlength="254"
+                   placeholder="contato@empresa.com.br">
+          </div>
+          <div class="field">
+            <label for="telefone">Telefone *</label>
+            <input type="tel" id="telefone" name="telefone" required maxlength="20"
+                   placeholder="(47) 99999-0000">
+          </div>
+          <div class="field">
+            <label for="segmento">Segmento *</label>
+            <select id="segmento" name="segmento" required>
+              <option value="">Selecione...</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="status">Status *</label>
+            <select id="status" name="status" required>
+              <option value="ativo">Ativo</option>
+              <option value="inativo">Inativo</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="data_fundacao">Data de fundação</label>
+            <input type="date" id="data_fundacao" name="data_fundacao">
+          </div>
+          <div class="field full">
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" name="descricao" maxlength="2000"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="btn-cancelar-footer">Cancelar</button>
+      <button type="submit" form="form" class="btn btn-primary">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="{% static 'empreendimentos/app.js' %}"></script>
+<script>
+  document.getElementById('btn-cancelar-footer').addEventListener('click', () => {
+    document.getElementById('overlay').classList.remove('open');
+  });
+</script>
+</body>
+</html>
