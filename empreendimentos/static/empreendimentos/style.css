@@ -279,6 +279,24 @@ td { padding: 11px 14px; vertical-align: middle; }
 }
 .toast.show { opacity: 1; }
 
+/* ── API link ── */
+footer.api-link {
+  border-top: 1px solid #e0e0e0;
+  padding: 14px 24px;
+  text-align: center;
+  font-size: 12px;
+  background: #fff;
+}
+
+footer.api-link a {
+  color: #3b6fa0;
+  text-decoration: underline;
+}
+
+footer.api-link a:hover {
+  color: #1a4a78;
+}
+
 /* ── Field validation ── */
 .field-invalid { border-color: #c0392b !important; }
 

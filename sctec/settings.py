@@ -2,7 +2,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-sctech-aval-secret-key-change-in-production'  # noqa: S105
+SECRET_KEY = 'django-insecure-sctec-aval-secret-key-change-in-production'  # noqa: S105
 
 DEBUG = True
 
@@ -30,7 +30,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'sctech.urls'
+ROOT_URLCONF = 'sctec.urls'
 
 TEMPLATES = [
     {
@@ -48,7 +48,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'sctech.wsgi.application'
+WSGI_APPLICATION = 'sctec.wsgi.application'
 
 DATABASES = {
     'default': {

@@ -24,7 +24,7 @@ ScTechAval/
 ├── manage.py
 ├── requirements.txt
 ├── db.sqlite3
-├── sctech/                          # configurações do projeto Django
+├── sctec/                          # configurações do projeto Django
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
