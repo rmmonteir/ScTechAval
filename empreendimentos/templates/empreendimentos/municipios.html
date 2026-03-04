@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Municípios SC - Projeto SCtec</title>
+  <link rel="stylesheet" href="{% static 'empreendimentos/style.css' %}">
+</head>
+<body>
+
+<header>
+  <h1>Empreendimentos SCT - Projeto SCtec</h1>
+  <nav class="header-nav">
+    <a href="/" class="nav-link">Empreendimentos</a>
+    <a href="/municipios/" class="nav-link nav-link-active">Municípios</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-heading">
+    <div>
+      <h2 class="page-title">Municípios de Santa Catarina</h2>
+      <p id="total-info" class="page-subtitle">Carregando...</p>
+    </div>
+    <button class="btn btn-secondary" id="btn-importar-municipios">&#8635; Atualizar via IBGE</button>
+  </div>
+
+  <div class="toolbar">
+    <input type="search" id="search-municipio" placeholder="Buscar por nome...">
+  </div>
+
+  <div class="table-wrap">
+    <p id="loading" class="loading">Carregando...</p>
+    <table id="tabela-municipios">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Código IBGE</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p id="empty" class="empty" hidden>Nenhum município encontrado.</p>
+  </div>
+</main>
+
+<footer class="api-link">
+  <a href="http://localhost:8000/api/municipios/" target="_blank" rel="noopener">
+    API REST: http://localhost:8000/api/municipios/
+  </a>
+  <span class="api-link-sep">|</span>
+  <a href="http://localhost:8000/admin/" target="_blank" rel="noopener">
+    Admin Django: http://localhost:8000/admin/
+  </a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="{% static 'empreendimentos/municipios.js' %}"></script>
+</body>
+</html>

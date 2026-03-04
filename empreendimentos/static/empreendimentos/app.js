@@ -44,7 +44,18 @@ document.getElementById('btn-novo').addEventListener('click', () => openModal())
 document.getElementById('btn-cancelar').addEventListener('click', closeModal);
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 form.addEventListener('submit', save);
+
+// ── Modal Municípios — listeners ───────────────────────
+const overlayMun = document.getElementById('overlay-municipios');
+document.getElementById('btn-abrir-municipios').addEventListener('click', openMunicipiosModal);
+document.getElementById('btn-fechar-municipios').addEventListener('click', closeMunicipiosModal);
+overlayMun.addEventListener('click', e => { if (e.target === overlayMun) closeMunicipiosModal(); });
 document.getElementById('btn-importar-municipios').addEventListener('click', importarMunicipios);
+let searchMunTimer;
+document.getElementById('search-municipio').addEventListener('input', e => {
+  clearTimeout(searchMunTimer);
+  searchMunTimer = setTimeout(() => renderMunicipios(filtrarMunicipios(e.target.value)), 200);
+});
 
 // ── Phone mask ─────────────────────────────────────────
 function mascaraTelefone(v) {
@@ -139,12 +150,65 @@ async function importarMunicipios() {
     });
     const data = await res.json();
     showToast(res.ok ? data.mensagem : data.erro);
+    if (res.ok) await carregarMunicipios();
   } catch {
     showToast('Erro ao conectar com a API do IBGE.');
   } finally {
     btn.disabled = false;
-    btn.textContent = '↻ Atualizar Municípios';
+    btn.textContent = '↻ Atualizar via IBGE';
   }
+}
+
+// ── Modal Municípios ────────────────────────────────────
+let todosMunicipios = [];
+
+async function openMunicipiosModal() {
+  document.getElementById('search-municipio').value = '';
+  overlayMun.classList.add('open');
+  if (todosMunicipios.length === 0) await carregarMunicipios();
+  else renderMunicipios(todosMunicipios);
+}
+
+function closeMunicipiosModal() {
+  overlayMun.classList.remove('open');
+}
+
+async function carregarMunicipios() {
+  const munLoading = document.getElementById('mun-loading');
+  munLoading.hidden = false;
+  document.getElementById('tbody-municipios').innerHTML = '';
+  try {
+    const res = await fetch('/api/municipios/');
+    todosMunicipios = await res.json();
+    renderMunicipios(todosMunicipios);
+  } catch {
+    showToast('Erro ao carregar municípios.');
+  } finally {
+    munLoading.hidden = true;
+  }
+}
+
+function filtrarMunicipios(termo) {
+  const t = termo.trim().toLowerCase();
+  return t ? todosMunicipios.filter(m => m.nome.toLowerCase().includes(t)) : todosMunicipios;
+}
+
+function renderMunicipios(lista) {
+  const tbodyMun = document.getElementById('tbody-municipios');
+  const munEmpty = document.getElementById('mun-empty');
+  const munTotal = document.getElementById('mun-total');
+
+  tbodyMun.innerHTML = '';
+  munEmpty.hidden = lista.length > 0;
+  munTotal.textContent = lista.length === todosMunicipios.length
+    ? `${todosMunicipios.length} municípios cadastrados`
+    : `${lista.length} de ${todosMunicipios.length} municípios`;
+
+  lista.forEach((m, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${i + 1}</td><td>${esc(m.nome)}</td><td>${esc(String(m.codigo_ibge))}</td>`;
+    tbodyMun.appendChild(tr);
+  });
 }
 
 async function remove(id, nome) {

@@ -11,6 +11,10 @@
 
 <header>
   <h1>Empreendimentos SCT - Projeto SCtec</h1>
+  <nav class="header-nav">
+    <span class="nav-link nav-link-active">Empreendimentos</span>
+    <button class="nav-link" id="btn-abrir-municipios">Municípios</button>
+  </nav>
 </header>
 
 <main>
@@ -32,7 +36,6 @@
   </div>
 
   <div class="table-actions">
-    <button class="btn btn-secondary" id="btn-importar-municipios">&#8635; Atualizar Municípios</button>
     <button class="btn btn-primary" id="btn-novo">+ Novo</button>
   </div>
 
@@ -139,6 +142,39 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- Modal Municípios -->
+<div class="overlay" id="overlay-municipios">
+  <div class="modal modal-lg" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div>
+        <h2>Municípios de Santa Catarina</h2>
+        <span id="mun-total" class="mun-total"></span>
+      </div>
+      <div class="modal-header-actions">
+        <button class="btn btn-secondary btn-sm" id="btn-importar-municipios">&#8635; Atualizar via IBGE</button>
+        <button class="modal-close" id="btn-fechar-municipios" aria-label="Fechar">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <input type="search" id="search-municipio" class="mun-search" placeholder="Buscar por nome...">
+      <div class="table-wrap">
+        <p id="mun-loading" class="loading">Carregando...</p>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Código IBGE</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-municipios"></tbody>
+        </table>
+        <p id="mun-empty" class="empty" hidden>Nenhum município encontrado.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="{% static 'empreendimentos/app.js' %}"></script>
 <script>
