@@ -1,5 +1,9 @@
 # ScTechAval
 
+## Pitch
+
+[Assistir ao pitch do projeto](https://1drv.ms/v/c/55364bc2c047036c/IQBWOOkzoeNMQooDTvNkOJDgAfZ93aWrRsRzvghehtEJH1Q?e=oP6gsB)
+
 ## Descrição
 
 O ScTechAval é uma aplicação web para cadastro e gerenciamento de empreendimentos do estado de Santa Catarina. Desenvolvida como uma API REST com interface web integrada, permite realizar operações completas de criação, consulta, edição e exclusão de empreendimentos diretamente pelo navegador.
