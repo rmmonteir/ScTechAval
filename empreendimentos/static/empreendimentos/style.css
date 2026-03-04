@@ -84,6 +84,7 @@ main {
 .table-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
   margin-bottom: 24px;
 }
 

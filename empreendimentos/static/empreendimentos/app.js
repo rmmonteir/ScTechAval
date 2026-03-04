@@ -44,6 +44,7 @@ document.getElementById('btn-novo').addEventListener('click', () => openModal())
 document.getElementById('btn-cancelar').addEventListener('click', closeModal);
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 form.addEventListener('submit', save);
+document.getElementById('btn-importar-municipios').addEventListener('click', importarMunicipios);
 
 // ── Phone mask ─────────────────────────────────────────
 function mascaraTelefone(v) {
@@ -124,6 +125,25 @@ async function save(e) {
     load();
   } catch {
     showToast('Erro ao salvar.');
+  }
+}
+
+async function importarMunicipios() {
+  const btn = document.getElementById('btn-importar-municipios');
+  btn.disabled = true;
+  btn.textContent = 'Atualizando...';
+  try {
+    const res = await fetch('/api/importar-municipios/', {
+      method: 'POST',
+      headers: { 'X-CSRFToken': getCsrf() },
+    });
+    const data = await res.json();
+    showToast(res.ok ? data.mensagem : data.erro);
+  } catch {
+    showToast('Erro ao conectar com a API do IBGE.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '↻ Atualizar Municípios';
   }
 }
 
