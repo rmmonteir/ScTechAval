@@ -60,10 +60,12 @@ document.getElementById('search-municipio').addEventListener('input', e => {
 // ── Phone mask ─────────────────────────────────────────
 function mascaraTelefone(v) {
   v = v.replace(/\D/g, '').slice(0, 11);
-  if (v.length <= 10)
-    return v.replace(/(\d{0,2})(\d{0,4})(\d{0,4})/, (_, a, b, c) =>
-      a ? `(${a}${b ? `) ${b}${c ? `-${c}` : ''}` : ''})` : '');
-  return v.replace(/(\d{2})(\d{5})(\d{0,4})/, (_, a, b, c) => `(${a}) ${b}${c ? `-${c}` : ''}`);
+  const n = v.length;
+  if (n === 0)  return '';
+  if (n <= 2)   return `(${v}`;
+  if (n <= 6)   return `(${v.slice(0, 2)}) ${v.slice(2)}`;
+  if (n <= 10)  return `(${v.slice(0, 2)}) ${v.slice(2, 6)}-${v.slice(6)}`;
+  return `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
 }
 
 document.getElementById('telefone').addEventListener('input', function () {
